@@ -1,8 +1,7 @@
 #!/bin/bash
 # Desenvolvedor : Diogo Machado
 # www.diogomachado.com
-# Versão : 1.0
-
+# Versão : 1.1
 menu ()
    {
     clear
@@ -47,7 +46,7 @@ compilarBasico ()
    echo
    echo "Compilando arquivo less"
    echo
-   lessc $arquivo style.css        
+   lessc $arquivo "${arquivo%style.less}style.css"        
    DISPLAY=:0 notify-send -i dialog-apply "Compilação concluída" "Arquivo CSS criado"
    central  
    }
@@ -60,8 +59,8 @@ compilarMinificado ()
    echo
    echo "Compilando arquivo less"
    echo
-   lessc -x $arquivo style.min.css        
-   DISPLAY=:0 notify-send "Compilação minificada concluída" "Arquivo CSS criado"
+   lessc -x $arquivo "${arquivo%style.less}style.min.css"        
+   DISPLAY=:0 notify-send -i dialog-apply "Compilação minificada concluída" "Arquivo CSS criado"
    central 
    }
 
@@ -72,8 +71,8 @@ compilarYui ()
    echo
    echo "Compilando arquivo less"
    echo
-   lessc --yui-compress $arquivo style.min.css        
-   DISPLAY=:0 notify-send "Compilação YUI concluída" "Arquivo CSS criado"
+   lessc --yui-compress $arquivo "${arquivo%style.less}style.min.css"        
+   DISPLAY=:0 notify-send -i dialog-apply "Compilação YUI concluída" "Arquivo, CSS criado"
    central 
    }
 
